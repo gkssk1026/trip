@@ -15,12 +15,7 @@ export default function MediaCard() {
       <Typography variant="body2" color="text.secondary">
         3,150여 개의 여행상품
       </Typography>
-      <CardMedia
-        component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="jeju"
-      />
+      <CardMedia component="img" height="140" image="jeju.jpg" alt="jeju" />
       <CardContent></CardContent>
       <CardActions>
         <Button size="small">둘러보기</Button>

@@ -12,7 +12,6 @@ const Main: NextPage = () => {
           <a>myrealtrip</a>
         </h1>
       </Link>
-
       <Box
         component="form"
         sx={{
@@ -27,16 +26,14 @@ const Main: NextPage = () => {
           variant="outlined"
         />
       </Box>
-      <ul>
-        <Link href="/login">
-          <a>로그인</a>
-        </Link>
-      </ul>
-      <ul>
-        <Link href="/join">
-          <a>회원가입</a>
-        </Link>
-      </ul>
+
+      <Link href="/login">
+        <a>로그인</a>
+      </Link>
+
+      <Link href="/join">
+        <a>회원가입</a>
+      </Link>
     </div>
   );
 };
