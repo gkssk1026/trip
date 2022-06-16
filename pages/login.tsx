@@ -5,6 +5,7 @@ const Container = styled.div`
   margin-top: 100px;
   padding: 20px;
   font-size: 15px;
+  text-align: center;
 `;
 
 const Input = styled.input`
