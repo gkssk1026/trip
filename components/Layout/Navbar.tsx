@@ -3,11 +3,20 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useRouter } from "next/router";
+import { UrlObject } from "url";
 
-function LinkTab(props) {
+interface LinkTabProps {
+  label?: string;
+  href?: string;
+}
+
+function LinkTab(props: LinkTabProps) {
   const router = useRouter();
 
-  const handleTabChange = (e) => {
+  const handleTabChange = (e: {
+    preventDefault: () => void;
+    target: { href: string | UrlObject };
+  }) => {
     console.log(e);
     e.preventDefault();
     router.push(e.target.href);
@@ -16,7 +25,7 @@ function LinkTab(props) {
   return (
     <Tab
       component="a"
-      onClick={(event) => {
+      onClick={(event: never) => {
         handleTabChange(event);
       }}
       {...props}
@@ -36,7 +45,10 @@ export default function NavTabs() {
   ];
   const [value, setValue] = React.useState(pages.indexOf(router.route));
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (
+    _event: React.SyntheticEvent<Element, Event>,
+    newValue: React.SetStateAction<number>
+  ) => {
     setValue(newValue);
   };
 
@@ -45,6 +57,7 @@ export default function NavTabs() {
       <Tabs
         value={value}
         onChange={(e, v) => handleChange(e, v)}
+        centered
         aria-label="nav tabs example"
       >
         <LinkTab label="초특가뽑기" href={pages[0]} />
