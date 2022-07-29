@@ -42,7 +42,7 @@ const join: NextPage = () => {
   passwordRef.current = watch("password");
 
   const onSubmitHandler: SubmitHandler<FormValue> = (data) => {
-    Axios.post("http://localhost:3001/create", {
+    Axios.post("http://localhost:1234/create", {
       name: data.name,
       nickname: data.nickname,
       email: data.email,

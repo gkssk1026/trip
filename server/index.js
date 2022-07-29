@@ -43,6 +43,10 @@ app.get("/memberList ", (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("Yey, your sever is running on port 3001");
+app.listen("1234", () => {
+  console.log(`
+################################################
+🛡️ Server listening on port: 1234 🛡️
+################################################
+`);
 });
