@@ -33,6 +33,27 @@ app.post("/create", (req, res) => {
   );
 });
 
+app.post("/login", (req, res) => {
+  const nickname = req.body.nickname;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM member WHERE nickname = ? AND password = ?",
+    [nickname, password],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      if (result.length > 0) {
+        res.send(result);
+      } else {
+        res.send({ message: "아이디나 패스워드를 잘못 입력하셨습니다." });
+        console.log(result);
+      }
+    }
+  );
+});
+
 app.get("/memberList ", (req, res) => {
   db.query("SELECT*FROM memberList ", (err, result) => {
     if (err) {
