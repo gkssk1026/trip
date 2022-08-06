@@ -57,38 +57,39 @@ interface FormValue {
 
 const login: NextPage = () => {
   const {
-    // register,
+    register,
     handleSubmit,
     // watch,
     formState: { errors },
   } = useForm<FormValue>();
 
   const onSubmitHandler: SubmitHandler<FormValue> = (data) => {
+    console.log(data);
     Axios.post("http://localhost:1234/login", {
       nickname: data.nickname,
       password: data.password,
-    }).then(() => {
+    }).then((res) => {
       console.log("response");
+      if (res.data.message) {
+        alert(res.data.message);
+      }
+      console.log(res);
     });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <label>nick name</label>
-      <Input
-        id="id"
-        name="nickname"
-        type="text"
-        placeholder="아이디를 입력해주세요"
-      />
+      <Input {...register("nickname", { required: true, maxLength: 10 })} />
+      {errors.nickname && errors.nickname.type === "required" && (
+        <div>닉네임을 입력해 주세요!</div>
+      )}
       <label>password</label>
       <Input
-        id="password"
-        name="password"
+        {...register("password", { required: true, minLength: 6 })}
         type="password"
-        placeholder="비밀번호를 입력해주세요"
       />
-      <button>로그인</button>
+      <Input type="submit" style={{ marginTop: "40px" }} />
     </form>
   );
 };

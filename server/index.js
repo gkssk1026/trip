@@ -18,7 +18,7 @@ app.post("/create", (req, res) => {
   const nickname = req.body.nickname;
   const email = req.body.email;
   const password = req.body.password;
-  const confirm = req.body.confirm;
+  // const confirm = req.body.confirm;
 
   db.query(
     "INSERT INTO member(name, nickname, email, password, confirm) VALUES(?,?,?,?,?)",
@@ -36,6 +36,9 @@ app.post("/create", (req, res) => {
 app.post("/login", (req, res) => {
   const nickname = req.body.nickname;
   const password = req.body.password;
+
+  console.log(nickname);
+  console.log(password);
 
   db.query(
     "SELECT * FROM member WHERE nickname = ? AND password = ?",
